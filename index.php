@@ -48,20 +48,20 @@
         <h1>Corpo do site</h1>
     </div>
     <footer id="footer">
-        <div class="social-container">
+        <div id="social-container">
             <ul>
                 <li>
-                    <a href="#" class="fab fa-facebook-square"></a>
+                    <a href="#"><i class="fab fa-facebook-square"></i></a>
                 </li>
                 <li>
-                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </li>
                 <li>
-                    <a href="#" class="fab fa-youtube"></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </li>
             </ul>
         </div>
-        <div id="footer-links">
+        <div id="footer-links-container">
             <ul>
                 <li><a href="#">Adicionar filme</a></li>
                 <li><a href="#">Adicionar crítica</a></li>
