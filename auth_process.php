@@ -3,7 +3,7 @@
     require_once("globals.php");
     require_once("db.php");
     // require_once("models/User.php");
-    require_once("models/Message.php");
+    // require_once("models/Message.php");
     require_once("dao/UserDAO.php");
 
     $message = new Message($BASE_URL);
@@ -31,7 +31,21 @@
                 // Verificar se o e-mail já está cadastrado no sistema
                 if($userDAO->findByEmail($email) === false) {
 
-                    echo "Nenhum dado foi encontrado!";
+                    $user = new User();
+
+                    // Criação de token e senha
+                    $userToken = $user->generateToken();
+                    $finalPassword = $user->generatePassword($password);
+
+                    $user->name = $name;
+                    $user->lastname = $lastname;
+                    $user->email = $email;
+                    $user->password = $finalPassword;
+                    $user->token = $userToken;
+
+                    $auth = true;
+
+                    $userDAO->create($user, $auth);
 
                 } else {
 
