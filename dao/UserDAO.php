@@ -8,11 +8,14 @@
         private $url;
 
         public function __construct(PDO $conn, $url) {
+
             $this->conn = $conn;
             $this->url = $url;
+            
         }
 
         public function buildUser($data) {
+
             $user = new User();
 
             $user->id = $data["id"];
@@ -25,6 +28,7 @@
             $user->token = $data["token"];
 
             return $user;
+
         }
 
         public function create(User $user, $authUser = false) {
