@@ -60,6 +60,31 @@
 
         public function verifyToken($protected = false) {
 
+            if(!empty($_SESSION["token"])) {
+
+                // Pega o token da session
+                $token = $_SESSION["token"];
+
+                $user = $this->findByToken($token);
+
+                if($user) {
+
+                    return $user;
+
+                } else if($protected) {
+
+                    // Redireciona usuário não autenticado
+                    $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+                    
+                }
+
+            } else if($protected) {
+
+                // Redireciona usuário não autenticado
+                $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+                
+            }
+
         }
 
         public function setTokenToSession($token, $redirect = true) {
@@ -95,6 +120,8 @@
                     $data = $stmt->fetch();
                     $user = $this->buildUser($data);
 
+                    return $user;
+
                 } else {
 
                     return false;
@@ -114,6 +141,43 @@
         }
 
         public function findByToken($token) {
+
+            if($token != "") {
+
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+
+                $stmt->bindParam(":token", $token);
+
+                $stmt->execute();
+
+                if($stmt->rowCount() > 0) {
+
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
+
+                    return $user;
+
+                } else {
+
+                    return false;
+
+                }
+
+            } else {
+
+                return false;
+                
+            }
+
+        }
+
+        public function destroyToken() {
+
+            // Remove token da sessão
+            $_SESSION["token"] = "";
+
+            // Redirecionar e apresentar a mensagem de sucesso
+            $this->message->setMessage("Você fez o logout com sucesso!", "success", "index.php");
 
         }
 
