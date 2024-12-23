@@ -9,7 +9,7 @@
             <div class="row" id="auth-row">
                 <div class="col-md-4" id="login-container">
                     <h2>Entrar</h2>
-                    <form action="" method="POST">
+                    <form action="<?= $BASE_URL ?>auth_process.php" method="POST">
                         <input type="hidden" name="type" value="login">
                         <div class="mb-3">
                             <label for="email" class="form-label">E-mail:</label>
