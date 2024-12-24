@@ -80,6 +80,32 @@
 
         $movieDAO->create($movie);
 
+    } else if($type === "delete") {
+
+        // Recebe dados do form
+        $id = filter_input(INPUT_POST, "id");
+
+        $movie = $movieDAO->findById($id);
+
+        if($movie) {
+
+            // Verificar se o filme é do usuário
+            if($movie->users_id === $userData->id) {
+
+                $movieDAO->destroy($movie->id);
+                
+            } else {
+
+                $message->setMessage("Informações inválidas!", "error", "index.php");
+
+            }
+
+        } else {
+
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+
+        }
+
     } else {
 
         $message->setMessage("Informações inválidas!", "error", "index.php");
