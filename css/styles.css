@@ -259,6 +259,80 @@ a {
     padding-top: 7px;
 }
 
+/* DASHBOARD */
+
+#add-movie-container {
+    text-align: right;
+}
+
+.table-custom {
+    color: #FFF;
+    background-color: #000;
+    width: 100%;
+    font-size: 18px;
+}
+
+#movies-dashboard .table-custom th {
+    border-top: none;
+    border-bottom: 2px solid #FFF;
+    padding: 15px 0;
+}
+
+#movies-dashboard .table-custom tr {
+    padding: 15px 0;
+}
+
+.table-movie-title {
+    color: #FFF;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.table-movie-title:hover {
+    color: #F5C518;
+}
+
+.actions-column {
+    max-width: 75px;
+    text-align: center;
+}
+
+.actions-column form {
+    display: inline-block;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: .5s;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #0DCAF0;
+    color: #FFF;
+}
+
+.edit-btn:hover {
+    background-color: transparent;
+    color: #0DCAF0;
+    text-decoration: none;
+}
+
+.delete-btn {
+    background-color: #DC3545;
+    color: #FFF;
+}
+
+.delete-btn:hover {
+    background-color: transparent;
+    color: #DC3545;
+    text-decoration: none;
+}
+
 /* FOOTER */
 
 #footer {

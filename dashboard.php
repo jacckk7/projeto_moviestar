@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="col-md-12" id="movies-dashboard">
-            <table class="table">
+            <table class="table-custom">
                 <thead>
                     <th scope="col">#</th>
                     <th scope="col">Título</th>
@@ -32,7 +32,7 @@
                     <tr>
                         <td scope="row">1</td>
                         <td><a href="#" class="table-movie-title">Título</a></td>
-                        <td><i class="fa fa-star"></i>9</td>
+                        <td><i class="fas fa-star"></i> 9</td>
                         <td class="actions-column">
                             <a href="#" class="edit-btn">
                                 <i class="far fa-edit"></i> Editar
