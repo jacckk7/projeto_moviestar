@@ -2,14 +2,16 @@
 
     require_once("templates/header.php");
     require_once("dao/MovieDAO.php");
+    require_once("dao/ReviewDAO.php");
 
     // Pegar id do filme
     $id = filter_input(INPUT_GET, "id");
 
     $movie;
 
-    $movieDAO = new MovieDAO($conn, $BASE_URL);
     $message = new Message($BASE_URL);
+    $movieDAO = new MovieDAO($conn, $BASE_URL);
+    $reviewDAO = new ReviewDAO($conn, $BASE_URL);
 
     if(empty($id)) {
 
@@ -43,6 +45,9 @@
         $userOwnsMovie = true;
 
     }
+
+    // Resgatar as reviews do filme
+    $movieReviews = $reviewDAO->getMoviesReview($id);
 
     // Resgatar as reviews do filme
     $alreadyReviewed = false;
@@ -101,23 +106,13 @@
                     </div>
                  <?php endif; ?>
                  <!-- Comentários -->
-                <div class="col-md-12 review">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="profile-image-container review-image" style="background-image: url('<?= $BASE_URL ?>img/users/user.png')"></div>
-                        </div>
-                        <div class="col-md-9 author-details-container">
-                            <h4 class="author-name">
-                                <a href="#">Breno Teste</a>
-                                <p><i class="fas fa-star"></i> 9</p>
-                            </h4>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="comment-title">Comentário</p>
-                            <p>Este é o comentário do usuário</p>
-                        </div>
-                    </div>
-                </div>
+                <?php if(count($movieReviews) === 0): ?>
+                    <p class="empty-list">Não há comentários para este filme ainda...</p>
+                <?php else: ?>
+                    <?php foreach($movieReviews as $review): ?>
+                        <?php require("templates/user_review.php"); ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
