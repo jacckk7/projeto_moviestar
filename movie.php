@@ -40,17 +40,20 @@
     // Checar se filme é do usuário
     $userOwnsMovie = false;
 
-    if(!empty($userData) && $userData->id === $movie->users_id) {
+    if(!empty($userData)) {
 
-        $userOwnsMovie = true;
+        if($userData->id === $movie->users_id) {
+
+            $userOwnsMovie = true;
+
+        }
+        
+        $alreadyReviewed = $reviewDAO->hasAlreadyReviewed($id, $userData->id);
 
     }
 
     // Resgatar as reviews do filme
     $movieReviews = $reviewDAO->getMoviesReview($id);
-
-    // Resgatar as reviews do filme
-    $alreadyReviewed = false;
 
 ?>
 
