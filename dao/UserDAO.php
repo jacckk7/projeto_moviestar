@@ -188,6 +188,33 @@
 
         public function findById($id) {
 
+            if($id != 0) {
+
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+
+                $stmt->bindParam(":id", $id);
+
+                $stmt->execute();
+
+                if($stmt->rowCount() > 0) {
+
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
+
+                    return $user;
+
+                } else {
+
+                    return false;
+
+                }
+
+            } else {
+
+                return false;
+                
+            }
+
         }
 
         public function findByToken($token) {
